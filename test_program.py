@@ -1,4 +1,5 @@
 import os
+import subprocess  # Импортируем subprocess для запуска программы
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 dir_files = [filename.lower() for filename in os.listdir(BASE_DIR)]
@@ -11,7 +12,7 @@ def test_program():
         assert filename in dir_files, f'Файл `{filename}` не найден.'
 
     try:
-        import program
+        subprocess.run(['python', 'program.py'], check=True)
     except Exception as e:
         assert False, (
             'Не удалось запустить `program.py`. '
